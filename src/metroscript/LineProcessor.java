@@ -1,0 +1,49 @@
+package metroscript;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public abstract class LineProcessor {
+    private static ArrayList<String> preTokenize(String line) {
+        String modifyLine = line.toString();
+
+        ArrayList<String> out = new ArrayList<>();
+        String greatestValidToken;
+        StringBuilder tokenToTry;
+
+        while (!modifyLine.isEmpty()) {
+            if(modifyLine.charAt(0) == ' ') modifyLine = modifyLine.substring(1);
+            greatestValidToken = "";
+            tokenToTry = new StringBuilder();
+
+            for (char c : modifyLine.toCharArray()) {
+                tokenToTry.append(c);
+                Token test1 = new Token(tokenToTry.toString());
+
+                if (test1.getType() != TokenType.ERROR) {
+                    greatestValidToken = tokenToTry.toString();
+                }
+            }
+
+            if (!greatestValidToken.isEmpty()) {
+                out.add(greatestValidToken);
+                modifyLine = modifyLine.substring(greatestValidToken.length());
+            }
+            else {
+                out.add("?");
+                break;
+            }
+        }
+
+        return out;
+    }
+
+    public static ArrayList<Token> tokenizeString(String input) {
+        ArrayList<Token> out = new ArrayList<>();
+
+        for (String stringToken : preTokenize(input)) {
+            out.add(new Token(stringToken));
+        }
+        return out;
+    }
+}
