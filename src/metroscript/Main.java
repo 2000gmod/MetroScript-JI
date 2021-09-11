@@ -19,6 +19,9 @@ public class Main {
         for(;;) {
             System.out.print(">> ");
             String line = reader.readLine();
+            if (line == null) {
+                return;
+            }
             ArrayList<Token> tokens = LineProcessor.tokenizeString(line);
             for (Token token : tokens) System.out.println(token);
         }

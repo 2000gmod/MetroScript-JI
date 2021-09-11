@@ -2,7 +2,7 @@ package metroscript;
 
 public enum TokenType {
     PLUS, MINUS, STAR, SLASH,
-    COMMA,
+    COMMA, DOT,
 
     ASSIGN, EQ, NOT_EQ,
     LT, GT, LEQ, GEQ, SEMICOLON,

@@ -56,7 +56,6 @@ public class Token {
     }
 
     public Token(String token) {
-        //if(token.charAt(0) == ' ') token = token.substring(1);
         if (token.charAt(0) == '\"' && token.charAt(token.length() - 1) == '\"' && token.length() > 1) {
             type = TokenType.STRING_LIT;
             stringValue = token.substring(1, token.length() - 1);
@@ -64,7 +63,7 @@ public class Token {
         }
 
         try {
-            intValue = Integer.parseInt(token);
+            intValue = parseInt(token);
             type = TokenType.INT_LIT;
             return;
         }
@@ -72,7 +71,7 @@ public class Token {
         }
 
         try {
-            doubleValue = Double.parseDouble(token);
+            doubleValue = parseDouble(token);
             type = TokenType.DOUBLE_LIT;
             return;
         }
@@ -111,6 +110,9 @@ public class Token {
                 break;
             case ",":
                 type = TokenType.COMMA;
+                break;
+            case ".":
+                type = TokenType.DOT;
                 break;
             case "=":
                 type = TokenType.ASSIGN;
@@ -200,10 +202,20 @@ public class Token {
             if (id.equals(keyword)) return false;
         }
         for (char c : id.toCharArray()) {
-            if (!(Character.isLetterOrDigit(c) || (c == '_')) || c == ';' || c == '\"') {
+            if (!(Character.isLetterOrDigit(c) || (c == '_')) || c == ';' || c == '\"' || c == ' ') {
                 return false;
             }
         }
         return true;
+    }
+
+    private static int parseInt(String number) throws NumberFormatException {
+        if (number.charAt(0) == '+' || number.charAt(0) == '-') throw new NumberFormatException();
+        else return Integer.parseInt(number);
+    }
+
+    private static double parseDouble(String number) throws NumberFormatException {
+        if (number.charAt(0) == '+' || number.charAt(0) == '-') throw new NumberFormatException();
+        else return Double.parseDouble(number);
     }
 }

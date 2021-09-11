@@ -1,7 +1,6 @@
 package metroscript;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class LineProcessor {
     private static ArrayList<String> preTokenize(String line) {
@@ -22,6 +21,10 @@ public abstract class LineProcessor {
 
                 if (test1.getType() != TokenType.ERROR) {
                     greatestValidToken = tokenToTry.toString();
+
+                    if (greatestValidToken.charAt(0) != '\"' && greatestValidToken.charAt(greatestValidToken.length() - 1) != '\"') {
+                        greatestValidToken = greatestValidToken.replaceAll(" ", "");
+                    }
                 }
             }
 
