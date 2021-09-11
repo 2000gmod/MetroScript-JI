@@ -1,37 +1,44 @@
-#Root del (sub)directorio con los archivos .java
+#Java sources dir
 SOURCEDIR = src
-#Directorio de salida
+#output directory
 OUTDIR = out
-#Directorio con las clases (si es que se usa)
+#class directory
 CLASSDIR = classes
 
-#Package que contiene a la clase Main
+#main class package
 MAINPACKAGE = metroscript
-#Nombre de la clase de ejecución
+#main class name
 MAINCLASS = Main
-#Argumentos para la función main
+#main function arguments
 ARGS = 
-#Salida de programa
+#redirect terminal output to this file
 OUT_FILE = out.txt
 
 
-#					NO CAMBIAR
+
+#					DO NOT CHANGE
 MAINFILE = $(SOURCEDIR)/$(subst .,/,$(MAINPACKAGE))/$(MAINCLASS).java
 COMP = javac
 JVM = java
 out = > $(OUT_FILE)
-#					NO CAMBIAR
+FILES := $(shell find . -name '*.java')
+COMPILED_FILES := $(subst .java,.class, $(subst ./src,./$(OUTDIR),$(FILES)))
+#					DO NOT CHANGE
 
 PHONY: default compile clean run runToFile
 
-default: compile
 
-compile:
-	$(COMP) -d $(OUTDIR) -classpath $(CLASSDIR) -sourcepath $(SOURCEDIR) $(MAINFILE)
+compile: $(COMPILED_FILES)
+
+$(OUTDIR)/%.class: $(SOURCEDIR)/%.java | $(OUTDIR)
+	$(COMP) -d $(OUTDIR) -classpath $(CLASSDIR) -sourcepath $(SOURCEDIR) $<
+
+$(OUTDIR):
+	mkdir -p $@
 
 clean:
 ifndef OUTDIR
-	$(error Path de salida vacío)
+	$(error Empty output path.)
 endif
 	rm -rf ./$(OUTDIR)/*
 	rm -f $(OUT_FILE)
