@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class LineProcessor {
     private static ArrayList<String> preTokenize(String line) {
-        String modifyLine = line.toString();
+        String modifyLine = line;
 
         ArrayList<String> out = new ArrayList<>();
         String greatestValidToken;
