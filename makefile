@@ -10,7 +10,7 @@ MAINPACKAGE = metroscript
 #main class name
 MAINCLASS = Main
 #main function arguments
-ARGS = 
+ARGS = examples/helloworld.mets
 #redirect terminal output to this file
 OUT_FILE = out.txt
 
@@ -25,7 +25,9 @@ FILES := $(shell find . -name '*.java')
 COMPILED_FILES := $(subst .java,.class, $(subst ./src,./$(OUTDIR),$(FILES)))
 #					DO NOT CHANGE
 
-PHONY: default compile clean run runToFile
+.PHONY: default compile clean run runToFile
+
+default : compile
 
 
 compile: $(COMPILED_FILES)

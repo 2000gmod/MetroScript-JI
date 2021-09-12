@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class LineProcessor {
     private static ArrayList<String> preTokenize(String line) {
-        String modifyLine = line;
+        String modifyLine = preProcessString(line);
 
         ArrayList<String> out = new ArrayList<>();
         String greatestValidToken;
@@ -51,4 +51,17 @@ public abstract class LineProcessor {
         }
         return out;
     }
+
+    public static String preProcessString(String line) {
+        StringBuilder out = new StringBuilder();
+
+        boolean writing = false;
+        
+        for (char c : line.toCharArray()) {
+            if (c != ' ') writing = true;
+            if (writing) out.append(c);
+        }
+        return out.toString();
+    }
+
 }

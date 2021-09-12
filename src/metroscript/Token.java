@@ -12,7 +12,8 @@ public class Token {
     public static final String[] keywords = {
             "int", "double", "bool", "string",
             "for", "while", "if", "else",
-            "and", "or", "not", "return"
+            "and", "or", "not", "return",
+            "break", "continue"
     };
 
     public String getStringValue() {
@@ -194,6 +195,12 @@ public class Token {
                 break;
             case "return":
                 type = TokenType.RETURN;
+                break;
+            case "break":
+                type = TokenType.BREAK;
+                break;
+            case "continue":
+                type = TokenType.CONTINUE;
                 break;
         }
     }
