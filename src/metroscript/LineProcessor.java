@@ -16,7 +16,9 @@ public abstract class LineProcessor {
             tokenToTry = new StringBuilder();
 
             for (char c : modifyLine.toCharArray()) {
-                tokenToTry.append(c);
+                if(c >= 32) tokenToTry.append(c);
+                else continue;
+
                 Token test1 = new Token(tokenToTry.toString());
 
                 if (test1.getType() != TokenType.ERROR) {

@@ -12,7 +12,7 @@ public class Token {
     public static final String[] keywords = {
             "int", "double", "bool", "string",
             "for", "while", "if", "else",
-            "and", "or", "not"
+            "and", "or", "not", "return"
     };
 
     public String getStringValue() {
@@ -191,6 +191,9 @@ public class Token {
                 break;
             case "string":
                 type = TokenType.STRING;
+                break;
+            case "return":
+                type = TokenType.RETURN;
                 break;
         }
     }

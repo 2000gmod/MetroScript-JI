@@ -17,5 +17,7 @@ public enum TokenType {
 
     INT_LIT, DOUBLE_LIT, BOOL_LIT, STRING_LIT,
     IDENTIFIER,
-    ERROR;
+
+    RETURN,
+    ERROR
 }
