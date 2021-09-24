@@ -10,7 +10,7 @@ MAINPACKAGE = metroscript
 #main class name
 MAINCLASS = Main
 #main function arguments
-ARGS = examples/helloworld.mets
+ARGS = 
 #redirect terminal output to this file
 OUT_FILE = out.txt
 

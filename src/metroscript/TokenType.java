@@ -13,11 +13,12 @@ public enum TokenType {
 
     IF, ELSE, FOR, WHILE, BREAK, CONTINUE,
 
+
     INT, DOUBLE, BOOL, STRING,
 
     INT_LIT, DOUBLE_LIT, BOOL_LIT, STRING_LIT,
     IDENTIFIER,
 
     RETURN,
-    ERROR
+    ERROR, EOF
 }

@@ -49,6 +49,7 @@ public abstract class LineProcessor {
         for (String stringToken : preTokenize(input)) {
             out.add(new Token(stringToken));
         }
+        out.add(new Token(TokenType.EOF));
         return out;
     }
 

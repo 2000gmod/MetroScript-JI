@@ -1,5 +1,6 @@
 package metroscript;
 
+
 public class Token {
     private TokenType type;
 
@@ -10,10 +11,10 @@ public class Token {
     private String identifierName;
 
     public static final String[] keywords = {
-            "int", "double", "bool", "string",
             "for", "while", "if", "else",
             "and", "or", "not", "return",
-            "break", "continue"
+            "break", "continue",
+            "int", "double", "bool", "string"
     };
 
     public String getStringValue() {
@@ -52,8 +53,12 @@ public class Token {
         return doubleValue;
     }
 
-    public boolean isBoolValue() {
+    public boolean getBoolValue() {
         return boolValue;
+    }
+
+    public Token(TokenType type) {
+        this.type = type;
     }
 
     public Token(String token) {
@@ -181,6 +186,15 @@ public class Token {
             case "while":
                 type = TokenType.WHILE;
                 break;
+            case "return":
+                type = TokenType.RETURN;
+                break;
+            case "break":
+                type = TokenType.BREAK;
+                break;
+            case "continue":
+                type = TokenType.CONTINUE;
+                break;
             case "int":
                 type = TokenType.INT;
                 break;
@@ -192,15 +206,6 @@ public class Token {
                 break;
             case "string":
                 type = TokenType.STRING;
-                break;
-            case "return":
-                type = TokenType.RETURN;
-                break;
-            case "break":
-                type = TokenType.BREAK;
-                break;
-            case "continue":
-                type = TokenType.CONTINUE;
                 break;
         }
     }
