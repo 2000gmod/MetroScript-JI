@@ -10,7 +10,7 @@ MAINPACKAGE = metroscript
 #main class name
 MAINCLASS = Main
 #main function arguments
-ARGS = 
+ARGS =
 #redirect terminal output to this file
 OUT_FILE = out.txt
 
@@ -30,10 +30,11 @@ COMPILED_FILES := $(subst .java,.class, $(subst ./src,./$(OUTDIR),$(FILES)))
 default : compile
 
 
-compile: $(COMPILED_FILES)
+compile: $(OUTDIR)/$(MAINPACKAGE)/$(MAINCLASS).class
 
 $(OUTDIR)/%.class: $(SOURCEDIR)/%.java | $(OUTDIR)
-	$(COMP) -d $(OUTDIR) -classpath $(CLASSDIR) -sourcepath $(SOURCEDIR) $<
+	@printf "Compiling file: %s\n" $<
+	@$(COMP) -d $(OUTDIR) -classpath $(CLASSDIR) -sourcepath $(SOURCEDIR) $<
 
 $(OUTDIR):
 	mkdir -p $@
@@ -46,6 +47,7 @@ endif
 	rm -f $(OUT_FILE)
 
 run: compile
+	@printf "Run: "
 	$(JVM) -cp ./$(OUTDIR) $(MAINPACKAGE).$(MAINCLASS) $(ARGS)
 
 runToFile: compile 

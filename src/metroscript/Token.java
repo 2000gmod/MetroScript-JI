@@ -120,6 +120,9 @@ public class Token {
             case ".":
                 type = TokenType.DOT;
                 break;
+            case "%":
+                type = TokenType.MOD;
+                break;
             case "=":
                 type = TokenType.ASSIGN;
                 break;

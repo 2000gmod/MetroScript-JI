@@ -10,8 +10,14 @@ import java.io.File;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        if(args.length == 0) runPrompt();
-        else runFile(args[0]);
+        try {
+            if(args.length == 0) runPrompt();
+            else runFile(args[0]);
+        }
+        catch (IOException e) {
+            System.out.println("Fatal error: file not found or can't be opened.");
+            return;
+        }
     }
 
     private static void runPrompt() throws IOException {
